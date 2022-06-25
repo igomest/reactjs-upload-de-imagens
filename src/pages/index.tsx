@@ -23,7 +23,11 @@ type Response = {
 
 export default function Home(): JSX.Element {
   async function fetchPages({ pageParam = null }): Promise<Response> {
-    const response = await api.get(`/api/images${pageParam}`);
+    const response = await api.get(`/api/images`, {
+      params: {
+        after: pageParam,
+      },
+    });
 
     return response.data;
   }
